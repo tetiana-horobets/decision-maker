@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         textView2.setText(builder.toString());
+                        inputLine.getText().clear();
                         break;
                     case R.id.button2:
                         textView2.setText("button New");
