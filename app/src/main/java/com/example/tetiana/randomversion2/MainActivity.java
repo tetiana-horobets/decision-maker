@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
                         String inputText = inputLine.getText().toString();
+                        if (inputText.equals("") || inputText.equals(" ") || inputText.equals("  ")){
+                            break;
+                        }
                         randomValues.add(inputText);
                         StringBuilder builder = new StringBuilder();
                         for (String randomValue : randomValues) {
