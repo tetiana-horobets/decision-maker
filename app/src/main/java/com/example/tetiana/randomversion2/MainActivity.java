@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +23,12 @@ public class MainActivity extends AppCompatActivity {
     Button buttonPlus;
     Button button2;
     Button button3;
+    TextView textViewResult;
+
+
 
     List<String> randomValues = new ArrayList<>();
+    Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         buttonPlus = (Button) findViewById(R.id.buttonPlus);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
+        textViewResult = (TextView) findViewById(R.id.textViewResult);
+
 
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
                         String inputText = inputLine.getText().toString();
-                        if (inputText.equals("") || inputText.equals(" ") || inputText.equals("  ")){
+                        if (inputText.trim().equals("")){
                             break;
                         }
                         randomValues.add(inputText);
@@ -62,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.button3:
                         Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
+                        int numberWords = randomValues.size();
+                        int randomNumber = random.nextInt(numberWords);
+                        String randomWorld = randomValues.get(randomNumber);
+                        intent.putExtra("rezult", randomWorld);
                         startActivity(intent);
                         break;
                 }
