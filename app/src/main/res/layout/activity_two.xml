@@ -31,11 +31,19 @@
         android:layout_height="wrap_content"
         android:textSize="17dp"
         android:text="Result"
-        android:layout_marginTop="143dp"
+        android:layout_marginTop="152dp"
         android:layout_below="@+id/appBarLayout"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="55dp"
-        android:layout_marginEnd="55dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignBaseline="@+id/textViewResult"
+        android:layout_alignBottom="@+id/textViewResult"
+        android:layout_toRightOf="@+id/textViewResult"
+        android:layout_toEndOf="@+id/textViewResult" />
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class ActivityTwo extends AppCompatActivity {
 
    TextView textViewResult;
+    TextView textView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,16 @@ public class ActivityTwo extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
        textViewResult = (TextView) findViewById(R.id.textViewResult);
+        textView3 = (TextView) findViewById(R.id.textView3);
+
         Intent intent = getIntent();
         String rezult = intent.getStringExtra("rezult");
         textViewResult.setText(rezult);
+
+
+        Intent intentTwo = getIntent();
+        String rezultTwo = intentTwo.getStringExtra("rezultTwo");
+        textView3.setText(rezultTwo);
 
     }
 
