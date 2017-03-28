@@ -30,8 +30,7 @@
 
     <Button
         android:id="@+id/buttonPlus"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+        style="@style/styleButton.Horizontal"
         android:text="+"
         android:layout_alignTop="@+id/inputLine"
         android:layout_alignParentRight="true"
@@ -41,8 +40,7 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+        style="@style/styleButton.Horizontal"
         android:layout_marginTop="3dp"
         android:text="new list"
         android:layout_below="@+id/buttonPlus"
@@ -72,8 +70,7 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+        style="@style/styleButton.Horizontal"
         android:text="Random"
         android:layout_below="@+id/textView2"
         android:layout_alignRight="@+id/button2"
