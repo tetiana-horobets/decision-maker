@@ -8,10 +8,10 @@
     tools:context="com.example.tetiana.randomversion2.ActivityTwo">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBarLayout">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -25,26 +25,26 @@
     <include layout="@layout/content_activity_two" />
 
 
-
     <TextView
         android:id="@+id/textViewResult"
-        android:layout_width="200dp"
+        style="@style/TextStyle"
+        android:background="@color/backgroundColorTextView"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:text="Result"
-        android:layout_marginTop="152dp"
         android:layout_below="@+id/appBarLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerInParent="true"
+        android:layout_marginTop="131dp"
+        android:text="Result" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="200dp"
+        style="@style/TextStyle"
+        android:background="@color/backgroundColorTextView"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_alignBaseline="@+id/textViewResult"
-        android:layout_alignBottom="@+id/textViewResult"
-        android:layout_toRightOf="@+id/textViewResult"
-        android:layout_toEndOf="@+id/textViewResult" />
+        android:layout_alignLeft="@id/textViewResult"
+        android:layout_below="@id/textViewResult"
+        android:layout_marginTop="7dp"
+        android:text="TextView" />
 
 </RelativeLayout>
