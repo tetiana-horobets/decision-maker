@@ -14,32 +14,28 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText inputLine;
-    EditText editText;
+
+
+
+
     TextView textView2;
     TextView textView;
-    Button buttonPlus;
-    Button button2;
-    Button button3;
-    TextView textViewResult;
-
     List<String> randomValues = new ArrayList<>();
     List<String> randomValuesListTwo = new ArrayList<>();
-    Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myscreen);
 
-        inputLine = (EditText) findViewById(R.id.inputLine);
-        editText = (EditText) findViewById(R.id.editText);
+
+        final EditText inputLine = (EditText) findViewById(R.id.inputLine);
+        final EditText editText = (EditText) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
         textView2 = (TextView) findViewById(R.id.textView2);
-        buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.randomizeButton);
-        textViewResult = (TextView) findViewById(R.id.textViewResult);
+        Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        Button button2 = (Button) findViewById(R.id.button2);
+        Button button3 = (Button) findViewById(R.id.randomizeButton);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -48,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
                         String inputText = inputLine.getText().toString();
-                        if (inputText.trim().equals("")){
+                        if (inputText.trim().equals("")) {
                             break;
                         }
 
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.button2:
                         String inputTextListTwo = editText.getText().toString();
-                        if (inputTextListTwo.trim().equals("")){
+                        if (inputTextListTwo.trim().equals("")) {
                             break;
                         }
                         randomValuesListTwo.add(inputTextListTwo);
@@ -68,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         editText.getText().clear();
                         break;
                     case R.id.randomizeButton:
+                        Random random = new Random();
 
                         Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
                         int numberWords = randomValues.size();
