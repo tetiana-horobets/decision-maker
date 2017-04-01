@@ -14,10 +14,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-
-
     TextView textView2;
     TextView textView;
     List<String> randomValues = new ArrayList<>();
@@ -30,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         final EditText inputLine = (EditText) findViewById(R.id.inputLine);
-        final EditText editText = (EditText) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
         textView2 = (TextView) findViewById(R.id.textView2);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
@@ -43,25 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (view.getId()) {
                     case R.id.buttonPlus:
-                        String inputText = inputLine.getText().toString();
-                        if (inputText.trim().equals("")) {
-                            break;
-                        }
-
-                        randomValues.add(inputText);
-                        textView.setText(formatForTextView(randomValues));
-                        inputLine.getText().clear();
+                        addVariant(inputLine,randomValues,textView);
                         break;
 
-
                     case R.id.button2:
-                        String inputTextListTwo = editText.getText().toString();
-                        if (inputTextListTwo.trim().equals("")) {
-                            break;
-                        }
-                        randomValuesListTwo.add(inputTextListTwo);
-                        textView2.setText(formatForTextView(randomValuesListTwo));
-                        editText.getText().clear();
+                        addVariant(inputLine, randomValuesListTwo, textView2);
                         break;
                     case R.id.randomizeButton:
                         Random random = new Random();
@@ -80,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                 }
+            }
+
+            private void addVariant(EditText editText, List<String> variants, TextView textView)  {
+                String inputTextListTwo = editText.getText().toString();
+                if (inputTextListTwo.trim().equals("")) {
+                    return;
+                }
+                variants.add(inputTextListTwo);
+                textView.setText(formatForTextView(variants));
+                editText.getText().clear();
             }
 
         };
