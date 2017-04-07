@@ -73,5 +73,17 @@
         android:layout_alignRight="@+id/textView2"
         android:layout_alignEnd="@+id/textView2" />
 
+    <TableLayout
+        android:id="@+id/linear"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/textView"
+        android:orientation="vertical" />
+
 
 </RelativeLayout>
