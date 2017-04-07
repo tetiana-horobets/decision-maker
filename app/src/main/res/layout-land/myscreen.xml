@@ -4,52 +4,36 @@
     <EditText
         android:id="@+id/inputLine"
         style="@style/TextStyle"
-        android:layout_width="200dp"
+        android:layout_width="440dp"
         android:layout_height="38dp"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="22dp"
         android:hint="Write a word or expression"
-        android:layout_toLeftOf="@+id/buttonPlus"
-        android:layout_toStartOf="@+id/buttonPlus" />
+        />
 
-    <EditText
-        android:id="@+id/editText"
-        style="@style/TextStyle"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:layout_alignTop="@+id/button2"
-        android:layout_above="@+id/textView2"
-        android:layout_toLeftOf="@+id/buttonPlus"
-        android:layout_alignLeft="@+id/inputLine"
-        android:layout_alignStart="@+id/inputLine" />
+
 
     <Button
         android:id="@+id/buttonPlus"
         style="@style/styleButton.Horizontal"
         android:text="+"
-        android:layout_alignTop="@+id/inputLine"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="19dp"
-        android:layout_marginEnd="19dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignBottom="@+id/inputLine"
+        android:layout_toRightOf="@+id/inputLine"
+        android:layout_toEndOf="@+id/inputLine"
+        android:layout_alignTop="@+id/inputLine" />
 
     <Button
         android:id="@+id/button2"
         style="@style/styleButton.Horizontal"
-        android:layout_marginTop="3dp"
         android:text="new list"
-        android:layout_below="@+id/buttonPlus"
-        android:layout_alignLeft="@+id/buttonPlus"
-        android:layout_alignStart="@+id/buttonPlus"
-       />
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/buttonPlus"
+        android:layout_alignTop="@id/buttonPlus"
+        android:layout_alignBottom="@+id/buttonPlus" />
 
     <TextView
         android:id="@+id/textView2"
@@ -59,7 +43,7 @@
         android:layout_height="155dp"
         android:text="TextView"
         android:layout_marginTop="7dp"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/inputLine"
         android:layout_alignRight="@+id/button2"
         android:layout_alignEnd="@+id/button2" />
 
@@ -71,18 +55,19 @@
         android:layout_height="155dp"
         android:text="TextView"
         android:layout_marginTop="7dp"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/inputLine"
+        android:layout_alignLeft="@+id/inputLine"
+        android:layout_alignStart="@+id/inputLine" />
 
     <Button
         android:id="@+id/randomizeButton"
         style="@style/styleButton.Horizontal"
         android:layout_height="38dp"
+        android:text="Random"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignLeft="@+id/button2"
-        android:text="Random"
-         />
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignLeft="@+id/buttonPlus"
+        android:layout_alignStart="@+id/buttonPlus" />
 </RelativeLayout>
