@@ -1,25 +1,52 @@
 package com.example.tetiana.randomversion2;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
-import static org.junit.Assert.*;
+import java.util.Random;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doAnswer;
 
 public class RandomSentenceTest {
 
+    private RandomSentence randomSentence;
+
+    @Before
+    public void setUp() throws Exception {
+        Random random = createRandom();
+        randomSentence = new RandomSentence(random);
+    }
+
     @Test
     public void singleList() {
-        RandomSentence randomSentence = new RandomSentence();
         randomSentence.addWord("Kate");
         assertEquals("Kate", randomSentence.getSentence());
     }
 
     @Test
     public void twoLists(){
-        RandomSentence randomSentence = new RandomSentence();
         randomSentence.addWord("Kate");
         randomSentence.addWord("John");
         randomSentence.newList();
         randomSentence.addWord("washes dishes");
-        assertEquals("Kate washes dishes", randomSentence.getSentence());
+        assertEquals("John washes dishes", randomSentence.getSentence());
+    }
+
+    private Random createRandom() {
+        Random random = Mockito.mock(Random.class);
+
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                return ((int) invocation.getArguments()[0]) - 1;
+            }
+        }).when(random).nextInt(anyInt());
+
+        return random;
     }
 }

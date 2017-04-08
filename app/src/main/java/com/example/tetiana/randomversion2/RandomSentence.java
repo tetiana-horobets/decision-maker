@@ -2,11 +2,14 @@ package com.example.tetiana.randomversion2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RandomSentence {
-    List<List<String>> lists = new ArrayList<>();
+    private List<List<String>> lists = new ArrayList<>();
+    private Random random;
 
-    RandomSentence() {
+    RandomSentence(Random random) {
+        this.random = random;
         lists.add(new ArrayList<String>());
     }
 
@@ -20,7 +23,8 @@ public class RandomSentence {
         String sentence = "";
         for (int i = 0; i < lists.size(); i++) {
             List<String> options = lists.get(i);
-            sentence += options.get(0);
+            int randomNumber = random.nextInt(options.size());
+            sentence += options.get(randomNumber);
             sentence += " ";
         }
         return sentence.trim();
