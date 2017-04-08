@@ -5,7 +5,6 @@ import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,8 +47,7 @@ public class UserInterfaceTest {
     }
 
     @Test
-    @Ignore
-    public void singleChoiceWithRotate() throws InterruptedException {
+    public void singleChoiceWithRotate() {
         input.perform(typeText("Kate"), closeSoftKeyboard());
         addToListButton.perform(click());
 
@@ -59,7 +57,6 @@ public class UserInterfaceTest {
         addToListButton.perform(click());
 
         rotateScreen();
-
         randomButton.perform(click());
 
         result.check(matches(withText("Kate washes dishes")));

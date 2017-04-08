@@ -97,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
+        bundle.putParcelable("randomSentence", randomSentence);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
+        randomSentence = bundle.getParcelable("randomSentence");
     }
 }
