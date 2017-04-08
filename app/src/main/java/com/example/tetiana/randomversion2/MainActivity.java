@@ -15,6 +15,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RandomSentence randomSentence = new RandomSentence(new Random());
+
     List<List<String>> options = new ArrayList<>();
     View lastView;
 
@@ -46,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
                         final TextView text111 = (TextView) lastView.findViewById(R.id.textViewDynamic);
+                        randomSentence.addWord(inputLine.getText().toString());
                         addVariant(inputLine, options.get(options.size() - 1), text111);
                         break;
 
                     case R.id.button2:
                             final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
                             final TextView text = (TextView) view1.findViewById(R.id.textViewDynamic);
+                        randomSentence.newList();
                         List<String> newList = new ArrayList<>();
                         options.add(newList);
                             //добавляем елементы в linearlayout
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                             String randomWord = option.get(randomNumber);
                             sentence += " " + randomWord;
                         }
-                        intent.putExtra("rezult", sentence.trim());
+                        intent.putExtra("rezult", randomSentence.getSentence());
 
                         startActivity(intent);
                         break;
