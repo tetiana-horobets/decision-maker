@@ -1,73 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"  android:background="@color/backgroundColor">
-    <EditText
-        android:id="@+id/inputLine"
-        style="@style/TextStyle"
-        android:layout_width="440dp"
-        android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:hint="Write a word or expression"
-        />
+    <RelativeLayout
+        android:id="@+id/inputsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
 
+        android:orientation="vertical" >
 
+        <EditText
+            android:id="@+id/inputLine"
+            android:layout_width="500dp"
+            android:layout_height="38dp"
+            android:hint="Write a word or expression"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/buttonPlus"
-        style="@style/styleButton.Horizontal"
-        android:text="+"
-        android:layout_marginLeft="5dp"
-        android:layout_alignBottom="@+id/inputLine"
-        android:layout_toRightOf="@+id/inputLine"
-        android:layout_toEndOf="@+id/inputLine"
-        android:layout_alignTop="@+id/inputLine" />
+        <Button
+            android:id="@+id/buttonPlus"
+            style="@style/styleButton"
+            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_toRightOf="@id/inputLine"
+            android:text="+" />
 
-    <Button
-        android:id="@+id/button2"
-        style="@style/styleButton.Horizontal"
-        android:text="new list"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/buttonPlus"
-        android:layout_alignTop="@id/buttonPlus"
-        android:layout_alignBottom="@+id/buttonPlus" />
+        <Button
+            android:id="@+id/button2"
+            style="@style/styleButton"
+            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_toRightOf="@id/buttonPlus"
+            android:text="new list" />
 
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/TextStyle"
-        android:background="@color/backgroundColorTextView"
-        android:layout_width="272dp"
-        android:layout_height="155dp"
-        android:text="TextView"
-        android:layout_marginTop="7dp"
-        android:layout_below="@+id/inputLine"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/inputsLayout"
+        android:orientation="vertical" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/TextStyle"
-        android:background="@color/backgroundColorTextView"
-        android:layout_width="272dp"
-        android:layout_height="155dp"
-        android:text="TextView"
-        android:layout_marginTop="7dp"
-        android:layout_below="@+id/inputLine"
-        android:layout_alignLeft="@+id/inputLine"
-        android:layout_alignStart="@+id/inputLine" />
+    <LinearLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/linear"
+        android:gravity="center"
 
-    <Button
-        android:id="@+id/randomizeButton"
-        style="@style/styleButton.Horizontal"
-        android:layout_height="38dp"
-        android:text="Random"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_alignLeft="@+id/buttonPlus"
-        android:layout_alignStart="@+id/buttonPlus" />
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/randomizeButton"
+            style="@style/styleButton"
+            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:text="Random"/>
+    </LinearLayout>
 </RelativeLayout>

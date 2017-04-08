@@ -15,8 +15,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView2;
-    TextView textView;
     List<List<String>> options = new ArrayList<>();
     View lastView;
 
@@ -28,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         options.add(new ArrayList<String>());
 
         final EditText inputLine = (EditText) findViewById(R.id.inputLine);
-        textView = (TextView) findViewById(R.id.textView);
-        textView2 = (TextView) findViewById(R.id.textView2);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
         Button button2 = (Button) findViewById(R.id.button2);
         Button button3 = (Button) findViewById(R.id.randomizeButton);
@@ -118,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
-
     }
 
     @Override
