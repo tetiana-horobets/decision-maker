@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             String randomWord = option.get(randomNumber);
                             sentence += " " + randomWord;
                         }
-                        intent.putExtra("rezult", sentence);
+                        intent.putExtra("rezult", sentence.trim());
 
                         startActivity(intent);
                         break;
