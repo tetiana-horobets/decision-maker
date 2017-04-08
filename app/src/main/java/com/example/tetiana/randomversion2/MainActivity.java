@@ -9,23 +9,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private RandomSentence randomSentence = new RandomSentence(new Random());
 
-    List<List<String>> options = new ArrayList<>();
     View lastView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myscreen);
-
-        options.add(new ArrayList<String>());
 
         final EditText inputLine = (EditText) findViewById(R.id.inputLine);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
@@ -35,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //находим наш linear который у нас под кнопкой add edittext в activity_main.xml
         final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
         final View firstView = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-
-        if(linear != null)
-            linear.addView(firstView);
+        linear.addView(firstView);
 
         lastView = firstView;
 
@@ -49,19 +42,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.buttonPlus:
                         final TextView text111 = (TextView) lastView.findViewById(R.id.textViewDynamic);
                         randomSentence.addWord(inputLine.getText().toString());
-                        addVariant(inputLine, options.get(options.size() - 1), text111);
+                        addVariant(inputLine, text111);
                         break;
 
                     case R.id.button2:
-                            final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-                            final TextView text = (TextView) view1.findViewById(R.id.textViewDynamic);
+                        final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
+                        final TextView text = (TextView) view1.findViewById(R.id.textViewDynamic);
                         randomSentence.newList();
-                        List<String> newList = new ArrayList<>();
-                        options.add(newList);
-                            //добавляем елементы в linearlayout
-                            addVariant(inputLine, newList, text);
-                            linear.addView(view1);
-                            lastView = view1;
+                        //добавляем елементы в linearlayout
+                        addVariant(inputLine, text);
+                        linear.addView(view1);
+                        lastView = view1;
 
                         Button deleteField = (Button) view1.findViewById(R.id.buttonDelete);
 
@@ -71,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     //получаем родительский view и удаляем его
                                     ((LinearLayout) view1.getParent()).removeView(view1);
-                                } catch(IndexOutOfBoundsException ex) {
+                                } catch (IndexOutOfBoundsException ex) {
                                     ex.printStackTrace();
                                 }
                             }
@@ -80,31 +71,19 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case R.id.randomizeButton:
-                        Random random = new Random();
-
                         Intent intent = new Intent(MainActivity.this, ActivityTwo.class);
-
-                        String sentence = "";
-                        for(List<String> option : options) {
-                            int numberWords = option.size();
-                            int randomNumber = random.nextInt(numberWords);
-                            String randomWord = option.get(randomNumber);
-                            sentence += " " + randomWord;
-                        }
                         intent.putExtra("rezult", randomSentence.getSentence());
-
                         startActivity(intent);
                         break;
                 }
             }
 
-            private void addVariant(EditText editText, List<String> variants, TextView textView)  {
+            private void addVariant(EditText editText, TextView textView) {
                 String inputTextListTwo = editText.getText().toString();
                 if (inputTextListTwo.trim().equals("")) {
                     return;
                 }
-                variants.add(inputTextListTwo);
-                textView.setText(formatForTextView(variants));
+                textView.append(editText.getText() + "\n");
                 editText.getText().clear();
             }
 
@@ -123,17 +102,4 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
     }
-
-    private String formatForTextView(List<String> strings) {
-        StringBuilder builder = new StringBuilder();
-
-        for (String string : strings) {
-            builder.append(string);
-            builder.append("\n");
-        }
-
-        return builder.toString();
-    }
-
-
 }
