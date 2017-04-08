@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
         //находим наш linear который у нас под кнопкой add edittext в activity_main.xml
         final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
         final View firstView = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-        linear.addView(firstView);
+
+        if(linear != null)
+            linear.addView(firstView);
+
         lastView = firstView;
 
 

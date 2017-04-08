@@ -1,5 +1,10 @@
 package com.example.tetiana.randomversion2;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -41,5 +46,26 @@ public class UserInterfaceTest {
         randomButton.perform(click());
 
         result.check(matches(withText("Kate washes dishes")));
+    }
+
+    @Test
+    public void singleChoiceWithRotate() throws InterruptedException {
+        input.perform(typeText("Kate"), closeSoftKeyboard());
+        addToListButton.perform(click());
+
+        newListButton.perform(click());
+
+        input.perform(typeText("washes dishes"), closeSoftKeyboard());
+        addToListButton.perform(click());
+
+        rotateScreen();
+
+        randomButton.perform(click());
+
+        result.check(matches(withText("Kate washes dishes")));
+    }
+
+    private void rotateScreen() {
+        rule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 }
