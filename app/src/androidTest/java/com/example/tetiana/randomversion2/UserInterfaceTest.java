@@ -5,6 +5,7 @@ import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,7 +68,15 @@ public class UserInterfaceTest {
     }
 
     @Test
-    public void showsOptions() {
+    public void showsOptionsSingleList() {
+        input.perform(typeText("Kate"), closeSoftKeyboard());
+        addToListButton.perform(click());
+
+        onView(allOf(withId(R.id.textViewDynamic), withText("Kate\n"))).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void showsOptionsTwoLists() {
         input.perform(typeText("Kate"), closeSoftKeyboard());
         addToListButton.perform(click());
 
@@ -80,6 +89,28 @@ public class UserInterfaceTest {
         addToListButton.perform(click());
         input.perform(typeText("cleans up apartment"), closeSoftKeyboard());
         addToListButton.perform(click());
+
+        onView(allOf(withId(R.id.textViewDynamic), withText("Kate\nJohn\n"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.textViewDynamic), withText("washes dishes\ncleans up apartment\n"))).check(matches(isDisplayed()));
+    }
+
+    @Test
+
+    public void showsOptionsWithRotate() throws InterruptedException {
+        input.perform(typeText("Kate"), closeSoftKeyboard());
+        addToListButton.perform(click());
+
+        input.perform(typeText("John"), closeSoftKeyboard());
+        addToListButton.perform(click());
+
+        newListButton.perform(click());
+
+        input.perform(typeText("washes dishes"), closeSoftKeyboard());
+        addToListButton.perform(click());
+        input.perform(typeText("cleans up apartment"), closeSoftKeyboard());
+        addToListButton.perform(click());
+        rotateScreen();
+
 
         onView(allOf(withId(R.id.textViewDynamic), withText("Kate\nJohn\n"))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.textViewDynamic), withText("washes dishes\ncleans up apartment\n"))).check(matches(isDisplayed()));

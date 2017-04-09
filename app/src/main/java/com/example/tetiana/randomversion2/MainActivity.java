@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
         //находим наш linear который у нас под кнопкой add edittext в activity_main.xml
         final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
-        final View firstView = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-        linear.addView(firstView);
-
-        lastView = firstView;
-
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
+                        if (lastView == null){
+                            final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
+                            linear.addView(view1);
+                            lastView = view1;
+                        }
                         final TextView text111 = (TextView) lastView.findViewById(R.id.textViewDynamic);
                         randomSentence.addWord(inputLine.getText().toString());
                         addVariant(inputLine, text111);
@@ -103,5 +104,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle bundle) {
         randomSentence = bundle.getParcelable("randomSentence");
+        final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
+        List<String> options = randomSentence.getOptions();
+        for (int i = 0; i < options.size();i++) {
+            String string = options.get(i);
+            final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
+            final TextView text = (TextView) view1.findViewById(R.id.textViewDynamic);
+            text.setText(string);
+            linear.addView(view1);
+            lastView = view1;
+        }
     }
 }

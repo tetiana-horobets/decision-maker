@@ -66,4 +66,24 @@ class RandomSentence implements Parcelable {
             return new RandomSentence[size];
         }
     };
+
+    public List<String> getOptions() {
+        List<String> options = new ArrayList<>();
+        for (int i = 0; i < lists.size(); i++) {
+            List<String> list = lists.get(i);
+            String string = toString(list);
+            options.add(string);
+
+        }
+        return options;
+    }
+
+    private String toString(List<String> words) {
+        String returnString = "";
+        for (int i = 0; i < words.size(); i++) {
+            returnString += words.get(i);
+            returnString += "\n";
+        }
+        return returnString;
+    }
 }

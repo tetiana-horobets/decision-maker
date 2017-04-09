@@ -6,6 +6,8 @@ import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
@@ -35,6 +37,19 @@ public class RandomSentenceTest {
         randomSentence.newList();
         randomSentence.addWord("washes dishes");
         assertEquals("John washes dishes", randomSentence.getSentence());
+    }
+
+    @Test
+    public void returnsOptions(){
+        randomSentence.addWord("Kate");
+        randomSentence.addWord("John");
+        randomSentence.newList();
+        randomSentence.addWord("washes dishes");
+
+        List<String> options = new ArrayList<>();
+        options.add("Kate\nJohn\n");
+        options.add("washes dishes\n");
+        assertEquals(options, randomSentence.getOptions());
     }
 
     private Random createRandom() {
