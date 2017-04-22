@@ -46,11 +46,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.getTextViewDynamic().setText(stringList.get(position));
     }
 
-
     @Override
     public int getItemCount() {
         return stringList.size();
     }
+
 
 
 }

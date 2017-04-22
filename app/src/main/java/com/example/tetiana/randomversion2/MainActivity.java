@@ -40,26 +40,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
-                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(randomSentence.getOptions());
-
-                        linear.setAdapter(adapter);
-                        //myList.add(inputLine.getText().toString());
                         randomSentence.addWord(inputLine.getText().toString());
+                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(randomSentence.getOptions());
+                        linear.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                         inputLine.getText().clear();
                         break;
 
                     case R.id.button2:
                         randomSentence.newList();
+                        randomSentence.addWord(inputLine.getText().toString());
                         RecyclerViewAdapter2 adapter2 = new RecyclerViewAdapter2(randomSentence.getOptions());
                         linear.setAdapter(adapter2);
-                        randomSentence.addWord(inputLine.getText().toString());
-                        adapter2.notifyDataSetChanged();
+                        linear.getAdapter().notifyDataSetChanged();
                         inputLine.getText().clear();
 
 
