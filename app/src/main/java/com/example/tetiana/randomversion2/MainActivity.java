@@ -1,20 +1,25 @@
 package com.example.tetiana.randomversion2;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private RandomSentence randomSentence = new RandomSentence(new Random());
+    List<String> myList = new ArrayList();
 
     View lastView;
 
@@ -28,46 +33,34 @@ public class MainActivity extends AppCompatActivity {
         Button button2 = (Button) findViewById(R.id.button2);
         Button button3 = (Button) findViewById(R.id.randomizeButton);
 
+
         //находим наш linear который у нас под кнопкой add edittext в activity_main.xml
-        final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
+        final RecyclerView linear = (RecyclerView) findViewById(R.id.linear);
+        linear.setLayoutManager(new LinearLayoutManager(this));
+
+
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
-                        if (lastView == null){
-                            final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-                            linear.addView(view1);
-                            lastView = view1;
-                        }
-                        final TextView text111 = (TextView) lastView.findViewById(R.id.textViewDynamic);
+                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(randomSentence.getOptions());
+
+                        linear.setAdapter(adapter);
+                        //myList.add(inputLine.getText().toString());
                         randomSentence.addWord(inputLine.getText().toString());
-                        addVariant(inputLine, text111);
+                        adapter.notifyDataSetChanged();
+                        inputLine.getText().clear();
                         break;
 
                     case R.id.button2:
-                        final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-                        final TextView text = (TextView) view1.findViewById(R.id.textViewDynamic);
                         randomSentence.newList();
-                        //добавляем елементы в linearlayout
-                        addVariant(inputLine, text);
-                        linear.addView(view1);
-                        lastView = view1;
-
-                        Button deleteField = (Button) view1.findViewById(R.id.buttonDelete);
-
-                        deleteField.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view2) {
-                                try {
-                                    //получаем родительский view и удаляем его
-                                    ((LinearLayout) view1.getParent()).removeView(view1);
-                                } catch (IndexOutOfBoundsException ex) {
-                                    ex.printStackTrace();
-                                }
-                            }
-                        });
+                        RecyclerViewAdapter2 adapter2 = new RecyclerViewAdapter2(randomSentence.getOptions());
+                        linear.setAdapter(adapter2);
+                        randomSentence.addWord(inputLine.getText().toString());
+                        adapter2.notifyDataSetChanged();
+                        inputLine.getText().clear();
 
 
                         break;
@@ -115,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
             lastView = view1;
         }
     }
+
 }

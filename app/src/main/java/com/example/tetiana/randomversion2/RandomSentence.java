@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class RandomSentence implements Parcelable {
-    private final List<List<String>> lists;
+class RandomSentence implements Parcelable {//Для передачи объектов из одной активности в другую
+    private final List<List<String>> lists;// те що передаєм
     private final Random random;
 
     RandomSentence(Random random) {
@@ -46,16 +46,16 @@ class RandomSentence implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
+    public int describeContents() {//описывает различного рода специальные объекты, описывающие интерфейс
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(Parcel dest, int flags) {// упаковывает объект для передачи
         dest.writeSerializable(new ArrayList<>(lists));
     }
 
-    public static final Creator<RandomSentence> CREATOR = new Creator<RandomSentence>() {
+    public static final Creator<RandomSentence> CREATOR = new Creator<RandomSentence>() {//поле которое генерирует объект класса-передатчика.
         @Override
         public RandomSentence createFromParcel(Parcel in) {
             return new RandomSentence(in);

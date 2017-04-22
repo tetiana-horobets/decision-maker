@@ -116,4 +116,5 @@ public class UserInterfaceTest {
         onView(allOf(withId(R.id.textViewDynamic), withText("washes dishes\ncleans up apartment\n"))).check(matches(isDisplayed()));
     }
 
+
 }

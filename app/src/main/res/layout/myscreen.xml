@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+
     <RelativeLayout
         android:id="@+id/inputsLayout"
         android:layout_width="match_parent"
@@ -36,20 +37,28 @@
             android:text="new list" />
 
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/layoutRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/inputsLayout">
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/linear"
         android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/inputsLayout"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
         android:orientation="vertical" />
+     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/bottomControls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/linear"
+        android:layout_below="@id/layoutRecycleView"
         android:gravity="center"
 
         android:orientation="vertical" >
