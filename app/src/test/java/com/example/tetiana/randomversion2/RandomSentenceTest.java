@@ -11,6 +11,7 @@ import java.util.Random;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
@@ -23,6 +24,11 @@ public class RandomSentenceTest {
     public void setUp() throws Exception {
         Random random = createRandom();
         randomSentence = new RandomSentence(random);
+    }
+
+    @Test
+    public void doesNotCreateEmptyList() {
+        assertTrue(randomSentence.getOptions().isEmpty());
     }
 
     @Test

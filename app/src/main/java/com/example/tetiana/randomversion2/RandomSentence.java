@@ -14,8 +14,6 @@ class RandomSentence implements Parcelable {//Для передачи объек
     RandomSentence(Random random) {
         this.random = random;
         this.lists = new ArrayList<>();
-
-        this.lists.add(new ArrayList<String>());
     }
 
     private RandomSentence(Parcel in) {
@@ -25,9 +23,15 @@ class RandomSentence implements Parcelable {//Для передачи объек
 
 
     void addWord(String word) {
-        int size = lists.size();
-        List<String> lastList = lists.get(size - 1);
-        lastList.add(word);
+        if(lists.isEmpty()) {
+            ArrayList<String> newList = new ArrayList<>();
+            newList.add(word);
+            lists.add(newList);
+        } else {
+            int size = lists.size();
+            List<String> lastList = lists.get(size - 1);
+            lastList.add(word);
+        }
     }
 
     String getSentence() {
