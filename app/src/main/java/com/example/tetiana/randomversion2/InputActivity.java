@@ -16,7 +16,7 @@ public class InputActivity extends AppCompatActivity {
         setContentView(R.layout.input_screen);
 
         List<List<String>> options = Arrays.asList(
-                Arrays.asList("Kate", "John"),
+                Arrays.asList("Kate", "John", "Jane"),
                 Arrays.asList("Washes dishes", "Cleans up apartment"),
                 Arrays.asList("Every Friday", "Every Sunday"),
                 Arrays.asList("Each even month", "Each odd month")

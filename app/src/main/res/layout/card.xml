@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ListView
+        <com.example.tetiana.randomversion2.FullyVisibleListView
             android:id="@+id/childListView"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
-        </ListView>
+            android:layout_height="wrap_content">
+        </com.example.tetiana.randomversion2.FullyVisibleListView>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
