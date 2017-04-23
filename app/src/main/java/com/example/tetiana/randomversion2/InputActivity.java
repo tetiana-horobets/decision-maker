@@ -2,8 +2,8 @@ package com.example.tetiana.randomversion2;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,16 +15,15 @@ public class InputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_screen);
 
-        ListView childListView = (ListView) findViewById(R.id.childListView);
-        ListView childListView2 = (ListView) findViewById(R.id.childListView2);
+        List<List<String>> options = Arrays.asList(
+                Arrays.asList("Kate", "John"),
+                Arrays.asList("Washes dishes", "Cleans up apartment"),
+                Arrays.asList("Every Friday", "Every Sunday"),
+                Arrays.asList("Each even month", "Each odd month")
+        );
 
-
-        List<String> content = Arrays.asList("Kate", "John");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.optionText, content);
-        childListView.setAdapter(adapter);
-
-        List<String> content2 = Arrays.asList("Washes dishes", "Cleans up apartment");
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.list_item, R.id.optionText, content2);
-        childListView2.setAdapter(adapter2);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setAdapter(new OptionsListAdapter(this, options));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
