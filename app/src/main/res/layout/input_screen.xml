@@ -11,12 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
-
         android:padding="10dp">
 
         <EditText
             android:id="@+id/inputOption"
-            android:layout_width="270dp"
+            android:layout_width="310dp"
             android:layout_height="38dp"
             android:hint="Write a word or expression" />
 
@@ -47,30 +46,38 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             card_view:cardBackgroundColor="#ffffff"
             card_view:cardElevation="5dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <ListView
+                android:id="@+id/childListView"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="hello world 1" />
+                android:layout_height="wrap_content">
+            </ListView>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             card_view:cardBackgroundColor="#ffffff"
             card_view:cardElevation="5dp"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <ListView
+                android:id="@+id/childListView2"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="hello world 2" />
+                android:layout_height="wrap_content">
+            </ListView>
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
