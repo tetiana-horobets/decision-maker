@@ -41,8 +41,9 @@ class RandomSentence implements Parcelable {//Для передачи объек
         return sentence.trim();
     }
 
-    void newList() {
+    void newList(String str) {
         lists.add(new ArrayList<String>());
+        addWord(str);
     }
 
     @Override
@@ -67,23 +68,7 @@ class RandomSentence implements Parcelable {//Для передачи объек
         }
     };
 
-    public List<String> getOptions() {
-        List<String> options = new ArrayList<>();
-        for (int i = 0; i < lists.size(); i++) {
-            List<String> list = lists.get(i);
-            String string = toString(list);
-            options.add(string);
-
-        }
-        return options;
-    }
-
-    private String toString(List<String> words) {
-        String returnString = "";
-        for (int i = 0; i < words.size(); i++) {
-            returnString += words.get(i);
-            returnString += "\n";
-        }
-        return returnString;
+    List<List<String>> getOptions() {
+        return lists;
     }
 }

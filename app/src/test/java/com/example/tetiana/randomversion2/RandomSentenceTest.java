@@ -6,10 +6,11 @@ import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
@@ -34,8 +35,7 @@ public class RandomSentenceTest {
     public void twoLists(){
         randomSentence.addWord("Kate");
         randomSentence.addWord("John");
-        randomSentence.newList();
-        randomSentence.addWord("washes dishes");
+        randomSentence.newList("washes dishes");
         assertEquals("John washes dishes", randomSentence.getSentence());
     }
 
@@ -43,12 +43,13 @@ public class RandomSentenceTest {
     public void returnsOptions(){
         randomSentence.addWord("Kate");
         randomSentence.addWord("John");
-        randomSentence.newList();
-        randomSentence.addWord("washes dishes");
+        randomSentence.newList("washes dishes");
 
-        List<String> options = new ArrayList<>();
-        options.add("Kate\nJohn\n");
-        options.add("washes dishes\n");
+        List<List<String>> options = asList(
+                asList("Kate", "John"),
+                singletonList("washes dishes")
+        );
+
         assertEquals(options, randomSentence.getOptions());
     }
 

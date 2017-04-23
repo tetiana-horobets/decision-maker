@@ -1,7 +1,6 @@
 package com.example.tetiana.randomversion2;
 
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -47,16 +47,16 @@ public class MainActivity extends AppCompatActivity {
                 switch (view.getId()) {
                     case R.id.buttonPlus:
                         randomSentence.addWord(inputLine.getText().toString());
-                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(randomSentence.getOptions());
+                        final RecyclerViewAdapter adapter = new RecyclerViewAdapter(Collections.<String>emptyList());
                         linear.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                         inputLine.getText().clear();
                         break;
 
                     case R.id.button2:
-                        randomSentence.newList();
+                        //randomSentence.newList();
                         randomSentence.addWord(inputLine.getText().toString());
-                        RecyclerViewAdapter2 adapter2 = new RecyclerViewAdapter2(randomSentence.getOptions());
+                        RecyclerViewAdapter2 adapter2 = new RecyclerViewAdapter2(Collections.<String>emptyList());
                         linear.setAdapter(adapter2);
                         linear.getAdapter().notifyDataSetChanged();
                         inputLine.getText().clear();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle bundle) {
         randomSentence = bundle.getParcelable("randomSentence");
         final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
-        List<String> options = randomSentence.getOptions();
+        List<String> options = Collections.<String>emptyList();
         for (int i = 0; i < options.size();i++) {
             String string = options.get(i);
             final View view1 = getLayoutInflater().inflate(R.layout.custom_text_view, null);
