@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class InputActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         final EditText inputOption = (EditText) findViewById(R.id.inputOption);
         Button buttonAddOption = (Button) findViewById(R.id.buttonAddOption);
+        Button buttonAddList = (Button) findViewById(R.id.buttonAddList);
 
         final RandomSentence randomSentence = new RandomSentence(new Random());
         final OptionsListAdapter adapter = new OptionsListAdapter(this, randomSentence.getOptions());
@@ -30,11 +32,19 @@ public class InputActivity extends AppCompatActivity {
         buttonAddOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String typedText = inputOption.getText().toString();
-                randomSentence.addWord(typedText);
+                Editable text = inputOption.getText();
+                randomSentence.addWord(text.toString());
                 adapter.notifyDataSetChanged();
-                inputOption.getText().clear();
+                text.clear();
             }
         });
+        buttonAddList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                randomSentence.newList(inputOption.getText().toString());
+                adapter.notifyDataSetChanged();
+            }
+        });
+
     }
 }
