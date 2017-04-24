@@ -18,6 +18,7 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -29,11 +30,18 @@ public class UserInterface2Test {
     public ActivityTestRule<InputActivity> rule = new ActivityTestRule<>(InputActivity.class);
 
     @Test
-    public void singleOption() {
+    public void addsOneElementToSingleList() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
 
         onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
+    @Test
+    public void clearsTypedTextAfterAddingToExistingList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).check(matches(withText("")));
     }
 
     public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {

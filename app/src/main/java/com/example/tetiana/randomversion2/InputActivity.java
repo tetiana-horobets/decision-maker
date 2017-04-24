@@ -33,6 +33,7 @@ public class InputActivity extends AppCompatActivity {
                 String typedText = inputOption.getText().toString();
                 randomSentence.addWord(typedText);
                 adapter.notifyDataSetChanged();
+                inputOption.getText().clear();
             }
         });
     }
