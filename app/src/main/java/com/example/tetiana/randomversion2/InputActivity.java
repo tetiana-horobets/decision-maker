@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -39,5 +40,20 @@ public class InputActivity extends AppCompatActivity {
                 randomSentence.newList(str);
             }
         }));
+
+        int dragDirections = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        int swipeDirections = ItemTouchHelper.START | ItemTouchHelper.END;
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(dragDirections, swipeDirections) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return true;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                adapter.onDeleteElement(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 }

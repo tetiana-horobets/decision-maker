@@ -21,6 +21,11 @@ class OptionsListAdapter extends RecyclerView.Adapter<OptionsListAdapter.ViewHol
         this.options = options;
     }
 
+    void onDeleteElement(int position){
+        options.remove(position);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);

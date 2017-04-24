@@ -15,7 +15,9 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -85,6 +87,14 @@ public class UserInterface2Test {
         onView(withId(R.id.inputOption)).perform(typeText(" Alice "), closeSoftKeyboard());
         onView(withId(R.id.buttonAddList)).perform(click());
         onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
+    @Test
+    public void removesSingleElementList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).perform(swipeRight());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
     }
 
     public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
