@@ -43,6 +43,23 @@ public class UserInterface2Test {
     }
 
     @Test
+    public void addsFourElementsToTwoDifferentLists() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("Bob"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("John"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("Jake"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("Bob"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("John"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("Jake"))));
+    }
+
+    @Test
     public void clearsTypedTextAfterAddingToExistingList() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
