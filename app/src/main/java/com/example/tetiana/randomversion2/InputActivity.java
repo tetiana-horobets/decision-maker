@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -28,23 +26,18 @@ public class InputActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        buttonAddOption.setOnClickListener(new View.OnClickListener() {
+        buttonAddOption.setOnClickListener(new AddButtonListener(adapter, inputOption, new InputConsumer() {
             @Override
-            public void onClick(View v) {
-                Editable text = inputOption.getText();
-                randomSentence.addWord(text.toString());
-                adapter.notifyDataSetChanged();
-                text.clear();
+            public void consume(String str) {
+                randomSentence.addWord(str);
             }
-        });
-        buttonAddList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                randomSentence.newList(inputOption.getText().toString());
-                adapter.notifyDataSetChanged();
-            }
-        });
+        }));
 
+        buttonAddList.setOnClickListener(new AddButtonListener(adapter, inputOption, new InputConsumer() {
+            @Override
+            public void consume(String str) {
+                randomSentence.newList(str);
+            }
+        }));
     }
 }

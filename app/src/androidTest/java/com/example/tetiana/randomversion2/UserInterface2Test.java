@@ -32,7 +32,6 @@ public class UserInterface2Test {
     public void addsOneElementToSingleListUsingAddToExistingButton() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
-
         onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
     }
 
@@ -40,7 +39,6 @@ public class UserInterface2Test {
     public void addsOneElementToSingleListUsingNewListButton() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddList)).perform(click());
-
         onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
     }
 
@@ -48,6 +46,13 @@ public class UserInterface2Test {
     public void clearsTypedTextAfterAddingToExistingList() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).check(matches(withText("")));
+    }
+
+    @Test
+    public void clearsTypedTextAfterAddingToNewList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
         onView(withId(R.id.inputOption)).check(matches(withText("")));
     }
 
