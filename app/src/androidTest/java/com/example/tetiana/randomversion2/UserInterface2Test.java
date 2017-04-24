@@ -56,6 +56,20 @@ public class UserInterface2Test {
         onView(withId(R.id.inputOption)).check(matches(withText("")));
     }
 
+    @Test
+    public void trimsTextWhenAddingToExistingList() {
+        onView(withId(R.id.inputOption)).perform(typeText(" Alice "), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
+    @Test
+    public void trimsTextWhenAddingToNewList() {
+        onView(withId(R.id.inputOption)).perform(typeText(" Alice "), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
     public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
         return new TypeSafeMatcher<View>() {
             @Override
