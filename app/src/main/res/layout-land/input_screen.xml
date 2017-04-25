@@ -15,22 +15,25 @@
 
         <EditText
             android:id="@+id/inputOption"
-            android:layout_width="490dp"
-            android:layout_height="38dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="560dp"
+            android:layout_height="40dp"
             android:hint="Write a word or expression" />
 
         <ImageButton
             android:id="@+id/buttonAddOption"
-            android:layout_width="40dp"
-            android:layout_height="38dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:elevation="5dp"
             android:layout_toRightOf="@id/inputOption"
             android:src="@mipmap/ic_add_black_24dp"
             />
 
         <ImageButton
             android:id="@+id/buttonAddList"
-            android:layout_width="40dp"
-            android:layout_height="38dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:elevation="5dp"
             android:layout_toRightOf="@id/buttonAddOption"
             android:src="@mipmap/ic_playlist_add_black_24dp"
             />
@@ -39,7 +42,7 @@
     <LinearLayout
         android:id="@+id/layoutRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="220dp"
         android:layout_below="@+id/inputsLayout"
         android:gravity="top"
         android:orientation="vertical">
@@ -62,12 +65,13 @@
 
         android:orientation="vertical" >
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonRandomize"
             style="@style/styleButton"
-            android:layout_height="38dp"
-            android:layout_width="wrap_content"
-            android:text="Randomized"/>
+            android:layout_height="45dp"
+            android:layout_width="210dp"
+            android:elevation="3dp"
+            android:src="@mipmap/ic_link_black_48dp"/>
     </LinearLayout>
 
 </RelativeLayout>

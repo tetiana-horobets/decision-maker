@@ -24,7 +24,7 @@ public class InputActivity extends AppCompatActivity {
         final EditText inputOption = (EditText) findViewById(R.id.inputOption);
         ImageButton buttonAddOption = (ImageButton) findViewById(R.id.buttonAddOption);
         ImageButton buttonAddList = (ImageButton) findViewById(R.id.buttonAddList);
-        Button buttonRandomize = (Button) findViewById(R.id.buttonRandomize);
+        ImageButton buttonRandomize = (ImageButton) findViewById(R.id.buttonRandomize);
 
         final RandomSentence randomSentence = new RandomSentence(new Random());
         final OptionsListAdapter adapter = new OptionsListAdapter(this, randomSentence.getOptions());
