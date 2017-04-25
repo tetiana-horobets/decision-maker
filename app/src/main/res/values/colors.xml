@@ -3,7 +3,7 @@
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="backgroundColor">#daeef2</color>
+    <color name="backgroundColor">#FFFFFF</color>
     <color name="backgroundColorTextView">#83ddef</color>
     <color name="TextColor">#000000</color>
     <color name="TextColorButton">#000000</color>

@@ -20,6 +20,9 @@ class AddButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Editable text = inputOption.getText();
+        if (text.toString().trim().equals("")) {
+            return;
+        }
         consumer.consume(text.toString().trim());
         adapter.notifyDataSetChanged();
         text.clear();

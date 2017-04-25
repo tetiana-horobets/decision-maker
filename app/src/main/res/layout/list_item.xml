@@ -4,24 +4,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <Button
+    <ImageButton
         android:id="@+id/listIcon"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="50dp"
-        android:text="0" />
+        android:src="@mipmap/ic_fiber_manual_record_black_18dp"
+        android:background="@color/backgroundColor"
+         />
 
     <TextView
         android:id="@+id/optionText"
-        android:layout_width="320dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:gravity="center_vertical"
         android:layout_toRightOf="@id/listIcon"
         android:text="hello world 1a" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonRemoveOption"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_toRightOf="@id/optionText"
-        android:text="(x)" />
+        android:src="@mipmap/ic_close_black_18dp"
+        android:background="@color/backgroundColor"
+        />
 </RelativeLayout>

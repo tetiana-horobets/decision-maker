@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <EditText
             android:id="@+id/inputOption"
-            android:layout_width="310dp"
+            android:layout_width="490dp"
             android:layout_height="38dp"
             android:hint="Write a word or expression" />
 
@@ -39,7 +39,7 @@
     <LinearLayout
         android:id="@+id/layoutRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="490dp"
+        android:layout_height="240dp"
         android:layout_below="@+id/inputsLayout"
         android:gravity="top"
         android:orientation="vertical">
@@ -67,7 +67,7 @@
             style="@style/styleButton"
             android:layout_height="38dp"
             android:layout_width="wrap_content"
-            android:text="Randomize"/>
+            android:text="Randomized"/>
     </LinearLayout>
 
 </RelativeLayout>

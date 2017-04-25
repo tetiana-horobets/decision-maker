@@ -62,6 +62,20 @@ public class UserInterface2Test {
     }
 
     @Test
+    public void doesNotPermitEmptyOptionUsingAddToExistingButton() {
+        onView(withId(R.id.inputOption)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
+    }
+
+    @Test
+    public void doesNotPermitEmptyOptionUsingAddToNewButton() {
+        onView(withId(R.id.inputOption)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
+    }
+
+    @Test
     public void clearsTypedTextAfterAddingToExistingList() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
@@ -95,6 +109,17 @@ public class UserInterface2Test {
         onView(withId(R.id.buttonAddList)).perform(click());
         onView(nthChildOf(withId(R.id.recyclerView), 0)).perform(swipeRight());
         onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
+    }
+
+    @Test
+    public void randomizesTwoWords() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("washes dishes"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.buttonRandomize)).perform(click());
+
+        onView(withId(R.id.resultText)).check(matches(withText("Alice washes dishes")));
     }
 
     public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {

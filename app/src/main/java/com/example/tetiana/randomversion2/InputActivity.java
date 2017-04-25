@@ -1,12 +1,15 @@
 package com.example.tetiana.randomversion2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.Random;
 
@@ -19,8 +22,9 @@ public class InputActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         final EditText inputOption = (EditText) findViewById(R.id.inputOption);
-        Button buttonAddOption = (Button) findViewById(R.id.buttonAddOption);
-        Button buttonAddList = (Button) findViewById(R.id.buttonAddList);
+        ImageButton buttonAddOption = (ImageButton) findViewById(R.id.buttonAddOption);
+        ImageButton buttonAddList = (ImageButton) findViewById(R.id.buttonAddList);
+        Button buttonRandomize = (Button) findViewById(R.id.buttonRandomize);
 
         final RandomSentence randomSentence = new RandomSentence(new Random());
         final OptionsListAdapter adapter = new OptionsListAdapter(this, randomSentence.getOptions());
@@ -55,5 +59,14 @@ public class InputActivity extends AppCompatActivity {
                 adapter.onDeleteElement(viewHolder.getAdapterPosition());
             }
         }).attachToRecyclerView(recyclerView);
+
+        buttonRandomize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InputActivity.this, ResultActivity.class);
+                intent.putExtra("result", randomSentence.getSentence());
+                startActivity(intent);
+            }
+        });
     }
 }
