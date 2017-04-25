@@ -112,6 +112,14 @@ public class UserInterfaceTest {
     }
 
     @Test
+    public void removesElementInsideList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.buttonRemoveOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
+    }
+
+    @Test
     public void randomizesTwoWords() {
         onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
         onView(withId(R.id.buttonAddOption)).perform(click());
