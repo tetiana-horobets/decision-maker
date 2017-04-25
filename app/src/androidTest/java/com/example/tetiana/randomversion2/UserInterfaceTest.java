@@ -1,11 +1,13 @@
 package com.example.tetiana.randomversion2;
 
-import android.content.pm.ActivityInfo;
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
+import android.view.ViewGroup;
 
-import org.junit.Ignore;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,108 +15,129 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.core.AllOf.allOf;
 
 
 @RunWith(AndroidJUnit4.class)
 public class UserInterfaceTest {
 
-    private final ViewInteraction input = onView(withId(R.id.inputLine));
-    private final ViewInteraction addToListButton = onView(withId(R.id.buttonPlus));
-    private final ViewInteraction newListButton = onView(withId(R.id.button2));
-    private final ViewInteraction randomButton = onView(withId(R.id.randomizeButton));
-    private final ViewInteraction result = onView(withId(R.id.textViewResult));
-
     @Rule
-    public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<InputActivity> rule = new ActivityTestRule<>(InputActivity.class);
 
     @Test
-    public void singleChoice() {
-        input.perform(typeText("Kate"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        newListButton.perform(click());
-
-        input.perform(typeText("washes dishes"), closeSoftKeyboard());
-        addToListButton.perform(click());
-        randomButton.perform(click());
-
-        result.check(matches(withText("Kate washes dishes")));
+    public void addsOneElementToSingleListUsingAddToExistingButton() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
     }
 
     @Test
-    public void singleChoiceWithRotate() {
-        input.perform(typeText("Kate"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        newListButton.perform(click());
-
-        input.perform(typeText("washes dishes"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        rotateScreen();
-        randomButton.perform(click());
-
-        result.check(matches(withText("Kate washes dishes")));
-    }
-
-    private void rotateScreen() {
-        rule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    public void addsOneElementToSingleListUsingNewListButton() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
     }
 
     @Test
-    public void showsOptionsSingleList() {
-        input.perform(typeText("Kate"), closeSoftKeyboard());
-        addToListButton.perform(click());
+    public void addsFourElementsToTwoDifferentLists() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("Bob"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("John"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("Jake"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
 
-        onView(allOf(withId(R.id.textViewDynamic), withText("Kate\n"))).check(matches(isDisplayed()));
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("Bob"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("John"))));
+        onView(nthChildOf(withId(R.id.recyclerView), 1)).check(matches(hasDescendant(withText("Jake"))));
     }
 
     @Test
-    public void showsOptionsTwoLists() {
-        input.perform(typeText("Kate"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        input.perform(typeText("John"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        newListButton.perform(click());
-
-        input.perform(typeText("washes dishes"), closeSoftKeyboard());
-        addToListButton.perform(click());
-        input.perform(typeText("cleans up apartment"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        onView(allOf(withId(R.id.textViewDynamic), withText("Kate\nJohn\n"))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.textViewDynamic), withText("washes dishes\ncleans up apartment\n"))).check(matches(isDisplayed()));
+    public void doesNotPermitEmptyOptionUsingAddToExistingButton() {
+        onView(withId(R.id.inputOption)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
     }
 
     @Test
-
-    public void showsOptionsWithRotate() throws InterruptedException {
-        input.perform(typeText("Kate"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        input.perform(typeText("John"), closeSoftKeyboard());
-        addToListButton.perform(click());
-
-        newListButton.perform(click());
-
-        input.perform(typeText("washes dishes"), closeSoftKeyboard());
-        addToListButton.perform(click());
-        input.perform(typeText("cleans up apartment"), closeSoftKeyboard());
-        addToListButton.perform(click());
-        rotateScreen();
-
-
-        onView(allOf(withId(R.id.textViewDynamic), withText("Kate\nJohn\n"))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.textViewDynamic), withText("washes dishes\ncleans up apartment\n"))).check(matches(isDisplayed()));
+    public void doesNotPermitEmptyOptionUsingAddToNewButton() {
+        onView(withId(R.id.inputOption)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
     }
 
+    @Test
+    public void clearsTypedTextAfterAddingToExistingList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).check(matches(withText("")));
+    }
 
+    @Test
+    public void clearsTypedTextAfterAddingToNewList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.inputOption)).check(matches(withText("")));
+    }
+
+    @Test
+    public void trimsTextWhenAddingToExistingList() {
+        onView(withId(R.id.inputOption)).perform(typeText(" Alice "), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
+    @Test
+    public void trimsTextWhenAddingToNewList() {
+        onView(withId(R.id.inputOption)).perform(typeText(" Alice "), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(matches(hasDescendant(withText("Alice"))));
+    }
+
+    @Test
+    public void removesSingleElementList() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).perform(swipeRight());
+        onView(nthChildOf(withId(R.id.recyclerView), 0)).check(doesNotExist());
+    }
+
+    @Test
+    public void randomizesTwoWords() {
+        onView(withId(R.id.inputOption)).perform(typeText("Alice"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddOption)).perform(click());
+        onView(withId(R.id.inputOption)).perform(typeText("washes dishes"), closeSoftKeyboard());
+        onView(withId(R.id.buttonAddList)).perform(click());
+        onView(withId(R.id.buttonRandomize)).perform(click());
+
+        onView(withId(R.id.resultText)).check(matches(withText("Alice washes dishes")));
+    }
+
+    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with "+childPosition+" child view of type parentMatcher");
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                if (!(view.getParent() instanceof ViewGroup)) {
+                    return parentMatcher.matches(view.getParent());
+                }
+
+                ViewGroup group = (ViewGroup) view.getParent();
+                return parentMatcher.matches(view.getParent()) && group.getChildAt(childPosition).equals(view);
+            }
+        };
+    }
 }
