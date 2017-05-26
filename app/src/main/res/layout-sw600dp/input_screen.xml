@@ -15,15 +15,16 @@
 
         <EditText
             android:id="@+id/inputOption"
-            android:layout_marginTop="10dp"
-            android:layout_width="290dp"
-            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="460dp"
+            android:layout_height="60dp"
             android:hint="Write a word or expression" />
 
         <ImageButton
             android:id="@+id/buttonAddOption"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/inputOption"
             android:elevation="5dp"
             android:src="@mipmap/ic_add_black_24dp"
@@ -31,8 +32,9 @@
 
         <ImageButton
             android:id="@+id/buttonAddList"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/buttonAddOption"
             android:elevation="5dp"
             android:src="@mipmap/ic_playlist_add_black_24dp"
@@ -42,7 +44,7 @@
     <LinearLayout
         android:id="@+id/layoutRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="3200dp"
+        android:layout_height="650dp"
         android:layout_below="@+id/inputsLayout"
         android:gravity="top"
         android:orientation="vertical">
@@ -68,8 +70,8 @@
         <ImageButton
             android:id="@+id/buttonRandomize"
             style="@style/styleButton"
-            android:layout_height="45dp"
-            android:layout_width="210dp"
+            android:layout_height="55dp"
+            android:layout_width="260dp"
             android:elevation="3dp"
             android:src="@mipmap/ic_link_black_48dp"/>
     </LinearLayout>

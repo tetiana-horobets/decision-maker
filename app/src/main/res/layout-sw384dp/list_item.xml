@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/listIcon"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_label_outline_black_18dp"
+        android:background="@color/backgroundColor"
+         />
+
+    <TextView
+        android:id="@+id/optionText"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/listIcon"
+        android:text="hello world 1a" />
+
+    <ImageButton
+        android:id="@+id/buttonRemoveOption"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/optionText"
+        android:src="@mipmap/ic_close_black_18dp"
+        android:background="@color/backgroundColor"
+        />
+</RelativeLayout>
