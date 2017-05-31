@@ -17,22 +17,22 @@ This project is a simple application that helps an user to make decisions.
 
 User can type a word or expression that could be an option for decision. Plus button adds a new option.
 
-![Adding option](screens/add_option.png?raw=true Adding option )
+![Adding option](https://raw.githubusercontent.com/tetiana-horobets/decision-maker/master/screens/add_option.png)
 
 There could be multiple options...
 
-![Multiple options](screens/multiple_options.png?raw=true Multiple options)
+![Multiple options](https://raw.githubusercontent.com/tetiana-horobets/decision-maker/master/screens/multiple_options.png)
 
 and multiple lists of options. Add list button adds an option to new list.
 
-![Adding lists](screens/add_lists.png?raw=true Adding lists)
+![Adding lists](https://raw.githubusercontent.com/tetiana-horobets/decision-maker/master/screens/add_lists.png)
 
 The list could be removed:
 
-![Deleting list](screens/delete_list.png?raw=true Deleting list)
+![Deleting list](https://raw.githubusercontent.com/tetiana-horobets/decision-maker/master/screens/delete_list.png)
 
 When user press Randomize button the decision is shown:
 
-![Result](screens/result.png?raw=true Result)
+![Result](https://raw.githubusercontent.com/tetiana-horobets/decision-maker/master/screens/result.png)
 
 
