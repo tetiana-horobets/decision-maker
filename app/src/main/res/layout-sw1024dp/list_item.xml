@@ -6,15 +6,15 @@
 
     <ImageButton
         android:id="@+id/listIcon"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
         android:src="@mipmap/ic_label_outline_black_18dp"
         android:background="@color/backgroundColor"
          />
 
     <TextView
         android:id="@+id/optionText"
-        android:layout_width="760dp"
+        android:layout_width="470dp"
         android:layout_height="60dp"
         android:gravity="center_vertical"
         android:layout_toRightOf="@id/listIcon"
@@ -22,8 +22,8 @@
 
     <ImageButton
         android:id="@+id/buttonRemoveOption"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
         android:layout_toRightOf="@id/optionText"
         android:src="@mipmap/ic_close_black_18dp"
         android:background="@color/backgroundColor"
